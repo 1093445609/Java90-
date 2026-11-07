@@ -5,7 +5,7 @@ import java.util.List;
 
 public class demo02 {
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws Exception {
         List<String> list = new ArrayList<>();
         list.add("a");
         list.add("b");
@@ -14,9 +14,10 @@ public class demo02 {
         for (String s : list) {
             if (s.equals("a")){
                 //大概率抛 `ConcurrentModificationException`（也可能碰巧不抛——想想为什么）?
-                //
+                //fail-fast 机制但我不清楚原理
                 list.remove(s);
             }
         }
+
     }
 }
