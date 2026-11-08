@@ -23,7 +23,6 @@ public class demo03 {
             }
         }
         //2.倒序迭代删除元素会发生什么？为什么？
-        // 运行代码发现没有抛出异常了 不知道为啥
         //不抛异常是因为没有经过迭代器遍历 通过下标完成的
         for (int i = list.size() - 1; i >= 0; i--) {
             String next = list.get(i);

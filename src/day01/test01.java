@@ -12,19 +12,29 @@ public class test01 {
         List<String> list = new ArrayList<>(10000);
         for (int i = 0; i < 10000; i++) {
             list.add(String.valueOf(i));
+            list.add(String.valueOf(i-1));
+        }
+        System.out.println("去重前");
+        for(String s : list){
+            System.out.println(s);
         }
         //2 去重 如何保持有序
         //ai我的锅 我本意是准备一个空的set用于去重的 tab补全将list塞入了
         Set<String> set = new HashSet<>();
         //使用迭代器进行遍历 删除防止多线程 fail fast 快速失败机制
-        Iterator<String> iterator = set.iterator();
+        Iterator<String> iterator = list.iterator();
         while (iterator.hasNext()) {
             String next = iterator.next();
             //通过set 去重
             if (!set.add(next)) {
                 //通过list容器保持数据的有序性
-                list.remove(next);
+                //迭代器移除元素会同步更新ModCount 因此删除不会抛异常
+                iterator.remove();
             }
+        }
+        System.out.println("去重后");
+        for (String s : list) {
+            System.out.println(s);
         }
         //3.每秒 100 次、每次 1 万条，要注意什么（开放题）。
         // 答每秒一百次 需要注意限制频率为100 防止并发过大 内存占用大容易导致oom异常
