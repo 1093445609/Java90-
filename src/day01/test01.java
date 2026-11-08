@@ -14,7 +14,8 @@ public class test01 {
             list.add(String.valueOf(i));
         }
         //2 去重 如何保持有序
-        Set<String> set = new HashSet<>(list);
+        //ai我的锅 我本意是准备一个空的set用于去重的 tab补全将list塞入了
+        Set<String> set = new HashSet<>();
         //使用迭代器进行遍历 删除防止多线程 fail fast 快速失败机制
         Iterator<String> iterator = set.iterator();
         while (iterator.hasNext()) {
