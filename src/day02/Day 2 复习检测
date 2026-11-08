@@ -1,0 +1,11 @@
+Q1. new ArrayList<>() 之后立刻取，size() 和 elementData.length 分别多少？
+分别是0， 0   因为new立刻取并没有分配初始容量 需要等add时分配容量10，size是add元素后的数量
+Q2. 从装第 11 个元素开始，数组长度依次经历哪些值？
+先是10长度 add时发现容量长度不够 进行扩容 旧长度 10 + 10>> =15
+Q3. 一句话：size 和 capacity 的区别。
+size是元素的数量 capacity是数组大小，可分配内存空间大小
+Q4. 为什么增强 for 里 list.remove() 抛 CME，而 for(int i...) 里 list.remove(i) 不抛？
+增强for循环reomve后 调用next()会检查ModCount是否一致 如果不一致会抛出异常；
+而普通循环倒序移除元素则是通过下标进行操作的，为啥是倒序因为倒序遍历删除后 i值往前面访问不受影响
+Q5. 去重的正确方向是遍历谁、判断谁？反向为什么错？
+遍历list的迭代器 通过set去重判断是否移除元素 反向操作就不要说了用的idea快捷提示tab采纳的锅
