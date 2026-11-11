@@ -1,0 +1,6 @@
+1.MyArrayList 扩容序列前 6 个值是多少？为什么每次是这个规律？
+10 15 22 33 49 73 109        因为是1.5倍扩容 向下取整
+2.为什么 for(int i...) 里删元素不抛 CME，增强 for 会抛？
+ 普通for循环是通过下标定位元素的 倒序是为了不跳过处理元素； 增强型会调用迭代器 删除后调用next触发校验发现ModCount不一致 引发fail fast
+3.你昨天把 remove(Object) 改成 Objects.equals(elementData[i], o)——一句话说清：谁可能为 null，为什么原来的写法会炸？
+elementData[i]可能为null 通过objects可以防止空指针； 原来的写法通过对象调用equals 对象存在null可能

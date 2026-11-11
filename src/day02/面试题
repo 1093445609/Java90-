@@ -1,0 +1,11 @@
+1. ArrayList 的 add 时间复杂度是 O(1) 还是 O(n)？为什么这么说？
+答： 不扩容是o(1) 扩容的时候需要把旧元素全部复制到新数组 复杂度为o(n); 平均是o(1)
+2. 为什么 ArrayList 删除元素后要把末尾位置置为 null？
+答：删除后 数组后面的元素会复制前移一位，但是最后一位的元素如果没有置空会导致gcroot引用不为空 gc回收失败引发内存泄漏
+3. ArrayList 扩容 1.5 倍，如果连续 add n 个元素，总的时间复杂度是多少？（提示：均摊分析 amortized）
+答： 如果不扩容时间复杂度是O（1） 发生扩容需要将旧元素整个复制 复杂度为o(n) 均摊后复杂度为o(1)
+4. 手写实现的 MyArrayList 和 JDK 的 ArrayList 相比，少了哪些内容（至少说 3 个）？
+答：迭代器; fail fast 机制;序列化；批量操作addall removeall contains等方法；函数式java8写法；视图subList;克隆复制
+我不懂的你需要补充知识科普啊
+5. System.arraycopy 和普通 for 循环复制，差别在哪？
+答：System.arraycopy 是调用native本地方法进行大块内存复制 性能数倍高于普通for循环复制
