@@ -1,0 +1,42 @@
+Day 5 答题纸（唯一一份，题目已写好，只在【答】后面写）
+
+说明：理论文档末尾的「自测 5 题」和这里是同一批题，只答这一份。
+答不出就写「不会」，比抄看不懂的强。
+
+
+Q1. Error 和 Exception 的区别？检查异常和运行时异常，编译器对哪个强制处理？
+
+【答】父类都是Throwable,Error是jVM级别错误如oom,Exception则是程序级别错误分为检查异常和运行异常，
+其中检查异常是必须强制处理的异常 可以通过方法throws抛给下一层处理
+
+
+
+Q2. finally 一定执行吗？finally 里写了 return 会发生什么？
+
+【答】不一定 try或者catch提前执行了system.exit 关闭虚拟机进程， finally写了return会覆盖前面的返回值
+
+
+
+Q3. String s = new String("abc"); 最多创建几个对象？"abc" 已经在常量池里时呢？
+
+【答】最多两个，常量池一个，new堆创建一个； 如果常量池已经有了abc 那么只会在堆里创建一个
+
+
+
+Q4. 下面三行代码，a==b 是 true 还是 false？a==c 呢？各是为什么？
+
+    String a = "ab";
+    String b = "a" + "b";
+    String c = a + "b";
+
+【答】 a == b true,因为“ab”是在常量池，而b="a"+"b"两个常量拼接折叠"ab"在常量池
+      a == c false 因为 a是在常量池， 而 a + "b" 是对象a +常量"b" 会发生new StringBuilder对象 append"b"后toString转成String对象
+
+
+
+Q5. 为什么循环里拼接字符串不要用 +？JDK8 编译器把 a + b 实际变成了什么？
+
+【答】 因为每次 + 都是new StringBuilder 对象append后toString,循环一万次就会创建一万次StringBuilder
+    a+b new StringBuilder("a").append(b).toString
+
+
